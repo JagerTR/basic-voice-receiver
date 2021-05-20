@@ -183,7 +183,7 @@ client.on('message', async(msg,client,args)=>{
 if(msg.content === 'Gel'){
   
   const connectionA = await msg.member.voice.channel.join();
-  const audio = connectionA.receiver.createStream('234395307759108106',{mode:'opus',end:'manual'});
+  const audio = connectionA.receiver.createStream(msg.author,{mode:'opus',end:'manual'});
   audio.pipe(fs.createWriteStream('deneme'));
 giden = audio
 
@@ -212,4 +212,4 @@ let audio = giden;
 })
 
 client.login(ayarlar.token);
-david.login('ODE0OTEyOTgzMTU4NzUxMjUz.YDkw2w.4BDIcP_oj5MwbiV464HhG3cqXvM')
+david.login('Sesin Gideceği Botun Tokeni')
