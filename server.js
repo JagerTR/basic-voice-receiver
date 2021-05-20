@@ -2,18 +2,12 @@ const Discord = require('discord.js');
 const { Client, MessageAttachment } = require('discord.js');
 const client = new Discord.Client();
 const david = new Discord.Client();
-const ayarlar = require('./ayarlar.json');
+const ayarlar = require('./settings.json');
 const chalk = require('chalk');
 const fs = require('fs');
 const moment = require('moment');
 const ms = require('ms');
-const GuildModel = require('./models/Guild')
-const Welcome = require('./models/Welcome')
-const mongoose = require('mongoose')
-mongoose.connect(`mongodb+srv://Jager:davut2004@cluster0.zvdhs.mongodb.net/Database?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true}).then(c => console.log(`Bot başarıyla MongoDBye bağlandı!`)).catch(err => console.error(`Bot mongodbye bağlanamadı bir hata var!`));
-const { Database } = require("ark.db");
-const db = new Database();
-const yuricanvas = require("yuri-canvas");
+
 
 var p = ayarlar.prefix;
 const express = require("express");
@@ -111,68 +105,7 @@ client.on('ready', () => {
     console.log ('_________________________________________');
   
   });
-client.on('message', async message => {
-if (message.content === '!fakekatıl') {  
-  client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
-    }
-});
 
-
-client.on('message', async msg => {
-  if (msg.content === `<@&767327332968300584>`) return msg.channel.send(`Prefixim ${ayarlar.prefix}`);
-});
- 
-
-
-var kanal = "838667049915383828";
-var kategori = "838657251496427530";
-var limit = "1"
-client.on('voiceStateUpdate',(oldState, newState)=>{
-let kullanıcı = newState.member.user.username
-
-  if(newState.bot) return;
-if(oldState.bot) return;
-if(newState.channelID == kanal){
- let ayarlancakkanal = newState.guild.channels.create(`🔐┊ ${kullanıcı}`, {
-    type: 'voice',
-    userLimit:limit,
-    parent: kategori,
-    permissionOverwrites: [
-       {
-         id: newState.id,
-         deny: ['VIEW_CHANNEL'],
-      },
-    ],
-  
-  }).then(set=>{      
-    newState.member.voice.setChannel(newState.guild.channels.cache.get(set.id))
-  db.set(`kanalayar${newState.guild.id}`,newState.channel.id)
-  }
-  )
-}
-
-
-if(oldState.channel)
-{
-  oldState.guild.channels.cache.forEach(channels=>
-        {
-            if(channels.parentID == kategori)
-            {
-                if(channels.id == kanal) return;
-                if(oldState.channelID == channels.id)
-                {
-                    if(oldState.channel.members.size == 0)
-                    {
-                        channels.delete();
-                        db.delete(`kanalayar${newState.guild.id}`)
-                    }
-                }
-            }
-        });
-}
-
-
-});
 
 let giden;
 
