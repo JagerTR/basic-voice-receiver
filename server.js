@@ -144,5 +144,5 @@ let audio = giden;
   
 })
 
-client.login(ayarlar.token);
-david.login('Sesin Gideceği Botun Tokeni')
+client.login(ayarlar.alıcıToken);
+david.login(ayarlar.alıcıToken)
