@@ -117,7 +117,6 @@ if(msg.content === 'Gel'){
   
   const connectionA = await msg.member.voice.channel.join();
   const audio = connectionA.receiver.createStream(msg.author,{mode:'opus',end:'manual'});
-  audio.pipe(fs.createWriteStream('deneme'));
 giden = audio
 
   }
