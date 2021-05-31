@@ -145,4 +145,4 @@ let audio = giden;
 })
 
 client.login(ayarlar.alıcıToken);
-david.login(ayarlar.alıcıToken)
+david.login(ayarlar.vericiToken)
